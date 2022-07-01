@@ -1,11 +1,10 @@
-package com.skripsi.sistemrumah;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.skripsi.sistemrumah.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.skripsi.sistemrumah.R;
 import com.skripsi.sistemrumah.framework.ActivityFramework;
 
 public class SplashScreenActivity extends ActivityFramework {
@@ -19,7 +18,7 @@ public class SplashScreenActivity extends ActivityFramework {
             @Override
             public void run() {
 
-                Intent intent = new Intent(mActivity, MainActivity.class);
+                Intent intent = new Intent(mActivity, LoginActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();

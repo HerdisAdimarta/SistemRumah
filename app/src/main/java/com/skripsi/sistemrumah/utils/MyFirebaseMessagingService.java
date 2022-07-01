@@ -13,7 +13,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.firebase.messaging.RemoteMessage;
-import com.skripsi.sistemrumah.MainActivity;
+import com.skripsi.sistemrumah.ui.LoginActivity;
 import com.skripsi.sistemrumah.R;
 
 import java.util.Map;
@@ -69,7 +69,7 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
             String aksi = data_notif.get("action");
             switch (aksi){
                 case "cek_hp2" :
-                    Intent intent1 = new Intent(this, MainActivity.class);
+                    Intent intent1 = new Intent(this, LoginActivity.class);
                     intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                             Intent.FLAG_ACTIVITY_CLEAR_TOP |
                             Intent.FLAG_ACTIVITY_SINGLE_TOP |
@@ -122,7 +122,7 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
         String aksi = data_notif.get("action");
         switch (aksi){
             case "cek_hp2" :
-                intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                         Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_SINGLE_TOP);

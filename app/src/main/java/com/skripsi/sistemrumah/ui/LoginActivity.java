@@ -1,18 +1,14 @@
-package com.skripsi.sistemrumah;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.skripsi.sistemrumah.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.skripsi.sistemrumah.api.rest.REST_Controller;
+import com.skripsi.sistemrumah.R;
 import com.skripsi.sistemrumah.framework.ActivityFramework;
 import com.skripsi.sistemrumah.storage.SharedPreferencesProvider;
 import com.skripsi.sistemrumah.utils.UtilsDialog;
@@ -22,11 +18,8 @@ import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-public class MainActivity extends ActivityFramework {
+public class LoginActivity extends ActivityFramework {
     @BindView(R.id.btLogin)
     Button btLogin;
 
@@ -41,7 +34,7 @@ public class MainActivity extends ActivityFramework {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         SharedPreferencesProvider.getInstance().clearSession(mActivity);
         etPassword.setTransformationMethod(new AsteriskPasswordTransformationMethod());
@@ -69,7 +62,9 @@ public class MainActivity extends ActivityFramework {
             UtilsDialog.showBasicDialog(mActivity, "OK", "Konfirmasi Password harus diisi").show();
             return;
         }
-        login();
+//        login();
+        startActivity(new Intent(mActivity, MainMenuActivity.class));
+        finish();
 
 
     }
@@ -82,7 +77,7 @@ public class MainActivity extends ActivityFramework {
         data.put("username", mEtEmail);
         data.put("password", mEtPassword);
 
-        mProgressDialog = UtilsDialog.showLoading(MainActivity.this, mProgressDialog);
+        mProgressDialog = UtilsDialog.showLoading(LoginActivity.this, mProgressDialog);
         mProgressDialog.show();
 
 //        REST_Controller.CLIENT.postLogin(data).enqueue(new Callback<ApiLogin>() {
@@ -91,7 +86,7 @@ public class MainActivity extends ActivityFramework {
 //                if (response.isSuccessful()) {
 //                    if (response.body().getError_code() != 0) {
 //                        UtilsDialog.dismissLoading(mProgressDialog);
-//                        UtilsDialog.showBasicDialog(MainActivity.this, "OK", response.body().getMessage()).show();
+//                        UtilsDialog.showBasicDialog(LoginActivity.this, "OK", response.body().getMessage()).show();
 //                        return;
 //                    }
 //
@@ -106,8 +101,8 @@ public class MainActivity extends ActivityFramework {
 //                    startActivity(new Intent(mActivity, FindPromoActivity.class));
 //                    finish();
 //                } else {
-//                    ApiBasic error = ErrorUtils.parseError(response, MainActivity.this);
-//                    UtilsDialog.showBasicDialog(MainActivity.this, "OK", error.getMessage()).show();
+//                    ApiBasic error = ErrorUtils.parseError(response, LoginActivity.this);
+//                    UtilsDialog.showBasicDialog(LoginActivity.this, "OK", error.getMessage()).show();
 //                    UtilsDialog.dismissLoading(mProgressDialog);
 //                }
 //            }
@@ -115,7 +110,7 @@ public class MainActivity extends ActivityFramework {
 //            @Override
 //            public void onFailure(Call<ApiLogin> call, Throwable t) {
 //                UtilsDialog.dismissLoading(mProgressDialog);
-//                UtilsDialog.showBasicDialog(MainActivity.this, "OK", ErrorUtils.parseError(t.toString()).getMessage()).show();
+//                UtilsDialog.showBasicDialog(LoginActivity.this, "OK", ErrorUtils.parseError(t.toString()).getMessage()).show();
 //            }
 //        });
 
