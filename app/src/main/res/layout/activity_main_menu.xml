@@ -14,15 +14,16 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorBlue">
 
       <TextView
           style="@style/TvBFontNormal"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_gravity="center"
+          android:padding="10dp"
           android:gravity="center"
           android:text="Menu Utama"
           android:textColor="@color/colorWhite" />
@@ -35,7 +36,8 @@
         android:orientation="vertical"
         android:textColor="@color/colorWhite"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp">
 
       <TextView
           style="@style/TvBFontNormal"
