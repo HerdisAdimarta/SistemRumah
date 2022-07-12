@@ -58,15 +58,18 @@ public class LoginActivity extends ActivityFramework {
             UtilsDialog.showBasicDialog(mActivity, "OK", "Password harus diisi").show();
             return;
         }
-        if (etPassword.getText().toString().equals("")) {
-            UtilsDialog.showBasicDialog(mActivity, "OK", "Konfirmasi Password harus diisi").show();
-            return;
-        }
 //        login();
         startActivity(new Intent(mActivity, MainMenuActivity.class));
         finish();
 
 
+    }
+
+    @OnClick(R.id.btDaftar)
+    public void btDaftar(View view) {
+        preventMultiClick(view);
+        startActivity(new Intent(mActivity, DaftarActivity.class));
+        finish();
     }
 
     private void login() {

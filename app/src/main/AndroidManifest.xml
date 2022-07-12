@@ -16,6 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.DaftarActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme3" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
@@ -38,7 +43,7 @@
         </provider>
 
         <activity
-            android:name="com.skripsi.sistemrumah.ui.SplashScreenActivity"
+            android:name=".ui.SplashScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -48,12 +53,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.skripsi.sistemrumah.ui.LoginActivity"
+            android:name=".ui.LoginActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme3" />
         <activity
-            android:name="com.skripsi.sistemrumah.ui.MainMenuActivity"
+            android:name=".ui.MainMenuActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme3" />
