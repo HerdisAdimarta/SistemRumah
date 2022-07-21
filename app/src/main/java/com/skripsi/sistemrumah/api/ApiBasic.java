@@ -18,6 +18,9 @@ class ApiBasic {
     @SerializedName("severity")
     @Expose
     String severity;
+    @SerializedName("affected")
+    @Expose
+    String affected;
 
     @SerializedName("image")
     @Expose

@@ -4,9 +4,8 @@ import com.skripsi.sistemrumah.BuildConfig;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.skripsi.sistemrumah.api.ApiControl;
-import com.skripsi.sistemrumah.api.ApiGetRecent;
-import com.skripsi.sistemrumah.api.ApiSendFcm;
+import com.skripsi.sistemrumah.api.LoginResponse;
+import com.skripsi.sistemrumah.api.RegisterResponse;
 import com.skripsi.sistemrumah.storage.Common;
 
 import java.io.IOException;
@@ -25,7 +24,8 @@ import retrofit2.Call;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.GET;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
@@ -115,16 +115,13 @@ public class REST_Controller {
 
     public interface AlisanAPI {
 
-        @GET(Common.SUB_PATH + "/get_recent")
-        Call<ApiGetRecent> getData();
+        @FormUrlEncoded
+        @POST(Common.SUB_PATH + "/Session/login")
+        Call<LoginResponse> getLogin(@FieldMap Map<String, String> bodyMap);
 
         @Multipart
-        @POST(Common.SUB_PATH + "/save_fcm")
-        Call<ApiSendFcm> sendFcm(@PartMap Map<String, RequestBody> names);
-
-        @Multipart
-        @POST(Common.SUB_PATH + "/control")
-        Call<ApiControl> setControl(@PartMap Map<String, RequestBody> names);
+        @POST(Common.SUB_PATH + "/Session/register")
+        Call<RegisterResponse> getRegister(@PartMap Map<String, RequestBody> names);
 
     }
 }

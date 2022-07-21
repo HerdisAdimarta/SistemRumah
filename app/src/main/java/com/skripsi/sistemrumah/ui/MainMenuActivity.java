@@ -2,14 +2,36 @@ package com.skripsi.sistemrumah.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.skripsi.sistemrumah.R;
+import com.skripsi.sistemrumah.framework.ActivityFramework;
+import com.skripsi.sistemrumah.storage.SharedPreferencesProvider;
 
-public class MainMenuActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class MainMenuActivity extends ActivityFramework {
+    @BindView(R.id.tvUserName)
+    TextView tvUserName;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        ButterKnife.bind(this);
+        setUser();
     }
+
+    private void setUser() {
+        tvUserName.setText(SharedPreferencesProvider.getInstance().get_pref_user_name(mActivity));
+    }
+
+    @Override
+    public void onBackPressed() {
+
+    }
+
 }

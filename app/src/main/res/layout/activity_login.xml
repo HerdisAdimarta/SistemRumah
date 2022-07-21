@@ -40,13 +40,13 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/etEmail"
+                    android:id="@+id/etUsername"
                     style="@style/TvNFontNormal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
-                    android:hint="Email"
+                    android:hint="Username"
                     android:inputType="textEmailAddress"
                     android:padding="10dp"
                     android:text=""/>

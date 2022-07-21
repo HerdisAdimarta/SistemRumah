@@ -2,19 +2,34 @@ package com.skripsi.sistemrumah.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.skripsi.sistemrumah.R;
+import com.skripsi.sistemrumah.api.RegisterResponse;
+import com.skripsi.sistemrumah.api.rest.REST_Controller;
 import com.skripsi.sistemrumah.framework.ActivityFramework;
+import com.skripsi.sistemrumah.storage.SharedPreferencesProvider;
 import com.skripsi.sistemrumah.utils.UtilsDialog;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DaftarActivity extends ActivityFramework {
 
@@ -24,6 +39,8 @@ public class DaftarActivity extends ActivityFramework {
     EditText etUsername;
     @BindView(R.id.etPassword)
     EditText etPassword;
+
+    private ProgressDialog mProgressDialog;
 
     @OnClick(R.id.btnSimpan)
     public void btnSimpan(View view) {
@@ -42,11 +59,7 @@ public class DaftarActivity extends ActivityFramework {
             UtilsDialog.showBasicDialog(mActivity, "OK", "Password harus diisi").show();
             return;
         }
-
-//        login();
-        startActivity(new Intent(mActivity, LoginActivity.class));
-        finish();
-
+        register();
 
     }
 
@@ -55,6 +68,46 @@ public class DaftarActivity extends ActivityFramework {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar);
         ButterKnife.bind(this);
+    }
+
+    public void register() {
+        String mEtNama = etNama.getText().toString();
+        String mEtUserName = etUsername.getText().toString();
+        String mEtPass = etPassword.getText().toString();
+
+        final Map<String, RequestBody> data = new HashMap<>();
+        data.put("name", RequestBody.create(MediaType.parse("text/plain"), mEtNama));
+        data.put("username", RequestBody.create(MediaType.parse("text/plain"), mEtUserName));
+        data.put("password", RequestBody.create(MediaType.parse("text/plain"), mEtPass));
+
+        mProgressDialog = UtilsDialog.showLoading(DaftarActivity.this, mProgressDialog);
+
+        REST_Controller.CLIENT.getRegister(data).enqueue(new Callback<RegisterResponse>() {
+            @Override
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                UtilsDialog.dismissLoading(mProgressDialog);
+                if (response.isSuccessful()) {
+                    if (!response.body().getSeverity().equals("success")) {
+                        UtilsDialog.dismissLoading(mProgressDialog);
+                        UtilsDialog.showBasicDialog(DaftarActivity.this, "OK", response.body().getMessage()).show();
+                        return;
+                    }
+
+                    UtilsDialog.dismissLoading(mProgressDialog);
+                    startActivity(new Intent(mActivity, LoginActivity.class));
+                    finish();
+                } else {
+                    UtilsDialog.showBasicDialog(mActivity, "OK", response.errorBody().toString()).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                UtilsDialog.dismissLoading(mProgressDialog);
+                UtilsDialog.showBasicDialog(DaftarActivity.this, "OK", t.toString()).show();
+            }
+        });
+
     }
 
     @Override

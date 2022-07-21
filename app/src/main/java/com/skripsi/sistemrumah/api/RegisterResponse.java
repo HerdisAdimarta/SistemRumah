@@ -10,11 +10,16 @@ import lombok.Data;
 @Generated("org.jsonschema2pojo")
 public
 @Data
-class ApiControl {
-    @SerializedName("success")
-    @Expose
-    Boolean success;
+class RegisterResponse {
+
     @SerializedName("message")
     @Expose
     String message;
+    @SerializedName("severity")
+    @Expose
+    String severity;
+    @SerializedName("affected")
+    @Expose
+    String affected ;
+
 }

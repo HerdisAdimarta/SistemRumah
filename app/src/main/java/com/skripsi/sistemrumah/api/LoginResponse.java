@@ -10,16 +10,14 @@ import lombok.Data;
 @Generated("org.jsonschema2pojo")
 public
 @Data
-class ApiGetRecent {
-
+class LoginResponse {
     @SerializedName("message")
     @Expose
     String message;
     @SerializedName("severity")
     @Expose
     String severity;
-
-    @SerializedName("data")
+    @SerializedName("user")
     @Expose
-    GetRecent data;
+    String user;
 }
