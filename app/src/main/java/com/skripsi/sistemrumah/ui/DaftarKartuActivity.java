@@ -206,4 +206,9 @@ public class DaftarKartuActivity extends ActivityFramework {
         return sb.toString();
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
+
 }

@@ -13,35 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public abstract class ActivityFramework extends AppCompatActivity {
 
-
-    boolean doubleBackToExitPressedOnce;
-
     long mLastClickTime = 0;
-
-    public boolean preventingDoubleClick() {
-        Log.d("CT Now", "" + mLastClickTime);
-        Log.d("CT Sisa", "" + ((SystemClock.elapsedRealtime() - mLastClickTime)));
-        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
-            Log.d("STATUS", "DOUBLE");
-            return true;
-        }
-        mLastClickTime = SystemClock.elapsedRealtime();
-        return false;
-
-    }
-
-    public boolean doubleClickToBack() {
-        Log.d("CT Now", "" + mLastClickTime);
-        Log.d("CT Sisa", "" + ((SystemClock.elapsedRealtime() - mLastClickTime)));
-        Toast.makeText(mActivity, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
-        if (SystemClock.elapsedRealtime() - mLastClickTime < 4000) {
-            Log.d("STATUS", "DOUBLE");
-            return true;
-        }
-        mLastClickTime = SystemClock.elapsedRealtime();
-        return false;
-
-    }
 
     public static void preventMultiClick(final View view) {
         if (!view.isClickable()) {

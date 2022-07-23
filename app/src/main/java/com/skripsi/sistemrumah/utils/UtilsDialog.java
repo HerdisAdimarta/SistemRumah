@@ -65,48 +65,6 @@ public class UtilsDialog {
         }
     }
 
-    public static Dialog showCustomBasicDialog(final Activity act, String positive_name, String msg) {
-        final Dialog dialog = new Dialog(act);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); //before
-        dialog.setContentView(R.layout.custom_basic_dialog);
-        msg = checkErrorMessage(act, msg);
-
-        ImageView ivDialogImage = (ImageView) dialog.findViewById(R.id.ivDialogImage);
-        TextView tvDialogMessage = (TextView) dialog.findViewById(R.id.tvDialogMessage);
-        Button tvDialogClose = (Button) dialog.findViewById(R.id.btDialogClose);
-        tvDialogMessage.setText(Html.fromHtml(msg));
-        ivDialogImage.setVisibility(View.GONE);
-//        tvDialogClose.setText(positive_name);
-        tvDialogClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        return dialog;
-    }
-
-    public static Dialog showCustomBasicDialogIcon(final Activity act, String msg) {
-        final Dialog dialog = new Dialog(act);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); //before
-        dialog.setContentView(R.layout.custom_basic_dialog);
-        msg = checkErrorMessage(act, msg);
-
-        ImageView ivDialogImage = (ImageView) dialog.findViewById(R.id.ivDialogImage);
-        TextView tvDialogMessage = (TextView) dialog.findViewById(R.id.tvDialogMessage);
-        Button tvDialogClose = (Button) dialog.findViewById(R.id.btDialogClose);
-        tvDialogMessage.setText(Html.fromHtml(msg));
-        ivDialogImage.setVisibility(View.VISIBLE);
-//        tvDialogClose.setText(positive_name);
-        tvDialogClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        return dialog;
-    }
-
     public static AlertDialog showBasicDialog(final Activity act, String positive_name, String msg) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(act);
         try {
@@ -137,68 +95,6 @@ public class UtilsDialog {
 
         }
 
-        return null;
-    }
-
-    public static AlertDialog showDialog (final Activity act, String positive_name, String msg, boolean status) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(act);
-        try {
-            msg = checkErrorMessage(act, msg);
-            builder.setMessage(Html.fromHtml(msg))
-                    .setCancelable(false)
-                    .setPositiveButton(positive_name,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int id) {
-                                    dialog.cancel();
-                                    if (!status) {
-                                        act.finish();
-                                        Intent intent = new Intent(act, act.getClass());
-                                        act.startActivity(intent);
-                                    }
-                                }
-                            });
-            final AlertDialog a = builder.create();
-            return a;
-        }
-        catch (Exception e) {
-
-        }
-        return null;
-    }
-
-    public static AlertDialog showBasicDialogKonfirmation(Activity act, String msg, String mNegativeText, String mPositiveText) {
-        try {
-            AlertDialog.Builder builder = new AlertDialog.Builder(act);
-
-            msg = checkErrorMessage(act, msg);
-            builder.setMessage(Html.fromHtml(msg))
-                    .setCancelable(false)
-                    .setNegativeButton(mNegativeText,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int id) {
-                                    dialog.cancel();
-
-                                }
-                            })
-                    .setPositiveButton(mPositiveText,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int id) {
-                                    dialog.cancel();
-
-                                }
-                            });
-            AlertDialog a = builder.create();
-            String aplikasi = act.getResources().getString(R.string.app_name);
-            a.setTitle(aplikasi);
-            a.setIcon(R.mipmap.ic_launcher);
-            return a;
-        }
-        catch (Exception e) {
-
-        }
         return null;
     }
 
