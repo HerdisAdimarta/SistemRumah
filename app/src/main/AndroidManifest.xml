@@ -17,6 +17,11 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.DaftarKartuActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme3" />
+        <activity
             android:name=".ui.DaftarActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -83,5 +88,8 @@
             android:name="io.fabric.ApiKey"
             android:value="8e068c014923c017e0ac9bcf7578af4e3d3f0210" />
     </application>
+
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature android:name="android.hardware.nfc" />
 
 </manifest>
