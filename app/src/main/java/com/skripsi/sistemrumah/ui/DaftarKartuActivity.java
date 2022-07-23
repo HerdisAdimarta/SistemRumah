@@ -308,9 +308,4 @@ public class DaftarKartuActivity extends ActivityFramework {
 
     }
 
-    @Override
-    public void onBackPressed() {
-
-    }
-
 }

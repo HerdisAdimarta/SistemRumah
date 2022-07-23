@@ -33,7 +33,6 @@ public class MainMenuActivity extends ActivityFramework {
     public void llMain2(View view) {
         preventMultiClick(view);
         startActivity(new Intent(mActivity, DaftarKartuActivity.class));
-        finish();
     }
 
     private void setUser() {
