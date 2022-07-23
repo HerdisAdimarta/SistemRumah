@@ -123,5 +123,9 @@ public class REST_Controller {
         @POST(Common.SUB_PATH + "/Session/register")
         Call<RegisterResponse> getRegister(@PartMap Map<String, RequestBody> names);
 
+        @Multipart
+        @POST(Common.SUB_PATH + "/Sensor/loker")
+        Call<RegisterResponse> getDaftarKartu(@PartMap Map<String, RequestBody> names);
+
     }
 }
