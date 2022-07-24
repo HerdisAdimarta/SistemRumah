@@ -184,4 +184,9 @@ public class MonitoringActivity extends ActivityFramework {
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
+
 }
