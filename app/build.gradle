@@ -13,7 +13,7 @@ android {
             def version = variant.versionName
             def date = new Date()
             def formattedDate = date.format('ddMMyy')
-            outputFileName = "PendeteksiKebakaran${flavor}${version}_${formattedDate}.apk"
+            outputFileName = "LokerPintu${flavor}${version}_${formattedDate}.apk"
         }
     }
     compileSdkVersion 30
@@ -38,14 +38,14 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            resValue "string", "app_name", "Sistem Rumah"
+            resValue "string", "app_name", "Loker Pintu"
             //signingConfig signingConfigs.release
 //            shrinkResources true
         }
 
         debug {
 //            applicationIdSuffix ".dev"
-            resValue "string", "app_name", "Sistem Rumah"
+            resValue "string", "app_name", "Loker Pintu"
         }
     }
     flavorDimensions "default"
@@ -59,7 +59,7 @@ android {
             buildConfigField("String", "SUB_PATH", "\"index.php/Api\"")
         }
         prod {
-            versionName "1.1.2"
+            versionName "1.1.1"
             dimension "default"
             proguardFile 'flavor2-rules.pro'
             minSdkVersion 19
@@ -84,6 +84,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    //noinspection GradleCompatible
     implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.9.1'
 
     testImplementation 'junit:junit:4.13.2'
