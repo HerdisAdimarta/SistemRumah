@@ -1,22 +1,15 @@
 package com.skripsi.sistemrumah.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.skripsi.sistemrumah.R;
-import com.skripsi.sistemrumah.api.RegisterResponse;
+import com.skripsi.sistemrumah.api.MultiResponse;
 import com.skripsi.sistemrumah.api.rest.REST_Controller;
 import com.skripsi.sistemrumah.framework.ActivityFramework;
-import com.skripsi.sistemrumah.storage.SharedPreferencesProvider;
 import com.skripsi.sistemrumah.utils.UtilsDialog;
 
 import java.util.HashMap;
@@ -82,9 +75,9 @@ public class DaftarActivity extends ActivityFramework {
 
         mProgressDialog = UtilsDialog.showLoading(DaftarActivity.this, mProgressDialog);
 
-        REST_Controller.CLIENT.getRegister(data).enqueue(new Callback<RegisterResponse>() {
+        REST_Controller.CLIENT.getRegister(data).enqueue(new Callback<MultiResponse>() {
             @Override
-            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+            public void onResponse(Call<MultiResponse> call, Response<MultiResponse> response) {
                 UtilsDialog.dismissLoading(mProgressDialog);
                 if (response.isSuccessful()) {
                     if (!response.body().getSeverity().equals("success")) {
@@ -102,7 +95,7 @@ public class DaftarActivity extends ActivityFramework {
             }
 
             @Override
-            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+            public void onFailure(Call<MultiResponse> call, Throwable t) {
                 UtilsDialog.dismissLoading(mProgressDialog);
                 UtilsDialog.showBasicDialog(DaftarActivity.this, "OK", t.toString()).show();
             }

@@ -17,13 +17,12 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
 import com.skripsi.sistemrumah.R;
-import com.skripsi.sistemrumah.api.RegisterResponse;
+import com.skripsi.sistemrumah.api.MultiResponse;
 import com.skripsi.sistemrumah.api.rest.REST_Controller;
 import com.skripsi.sistemrumah.framework.ActivityFramework;
 import com.skripsi.sistemrumah.nfc.Utils;
@@ -280,9 +279,9 @@ public class DaftarKartuActivity extends ActivityFramework {
 
         mProgressDialog = UtilsDialog.showLoading(DaftarKartuActivity.this, mProgressDialog);
 
-        REST_Controller.CLIENT.getDaftarKartu(data).enqueue(new Callback<RegisterResponse>() {
+        REST_Controller.CLIENT.getDaftarKartu(data).enqueue(new Callback<MultiResponse>() {
             @Override
-            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+            public void onResponse(Call<MultiResponse> call, Response<MultiResponse> response) {
                 UtilsDialog.dismissLoading(mProgressDialog);
                 if (response.isSuccessful()) {
                     if (!response.body().getSeverity().equals("success")) {
@@ -300,7 +299,7 @@ public class DaftarKartuActivity extends ActivityFramework {
             }
 
             @Override
-            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+            public void onFailure(Call<MultiResponse> call, Throwable t) {
                 UtilsDialog.dismissLoading(mProgressDialog);
                 UtilsDialog.showBasicDialog(DaftarKartuActivity.this, "OK", t.toString()).show();
             }

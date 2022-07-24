@@ -29,6 +29,12 @@ public class MainMenuActivity extends ActivityFramework {
         setUser();
     }
 
+    @OnClick(R.id.llMain1)
+    public void llMain1(View view) {
+        preventMultiClick(view);
+        startActivity(new Intent(mActivity, MonitoringActivity.class));
+    }
+
     @OnClick(R.id.llMain2)
     public void llMain2(View view) {
         preventMultiClick(view);

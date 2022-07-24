@@ -5,7 +5,7 @@ import com.skripsi.sistemrumah.BuildConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.skripsi.sistemrumah.api.LoginResponse;
-import com.skripsi.sistemrumah.api.RegisterResponse;
+import com.skripsi.sistemrumah.api.MultiResponse;
 import com.skripsi.sistemrumah.storage.Common;
 
 import java.io.IOException;
@@ -26,6 +26,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
@@ -121,11 +122,14 @@ public class REST_Controller {
 
         @Multipart
         @POST(Common.SUB_PATH + "/Session/register")
-        Call<RegisterResponse> getRegister(@PartMap Map<String, RequestBody> names);
+        Call<MultiResponse> getRegister(@PartMap Map<String, RequestBody> names);
 
         @Multipart
         @POST(Common.SUB_PATH + "/Sensor/loker")
-        Call<RegisterResponse> getDaftarKartu(@PartMap Map<String, RequestBody> names);
+        Call<MultiResponse> getDaftarKartu(@PartMap Map<String, RequestBody> names);
+
+        @GET(Common.SUB_PATH + "/Sensor/monitoring")
+        Call<MultiResponse> sendDataMonitoring();
 
     }
 }

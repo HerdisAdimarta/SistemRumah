@@ -10,7 +10,7 @@ import lombok.Data;
 @Generated("org.jsonschema2pojo")
 public
 @Data
-class RegisterResponse {
+class MultiResponse {
 
     @SerializedName("message")
     @Expose
