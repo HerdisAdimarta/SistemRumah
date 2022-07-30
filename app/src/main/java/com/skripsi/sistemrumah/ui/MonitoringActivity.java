@@ -15,7 +15,13 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.skripsi.sistemrumah.R;
+import com.skripsi.sistemrumah.adapter.MyAdapter;
+import com.skripsi.sistemrumah.api.ApiMonitoring;
+import com.skripsi.sistemrumah.api.GetDataMonitoring;
 import com.skripsi.sistemrumah.api.MultiResponse;
 import com.skripsi.sistemrumah.api.rest.REST_Controller;
 import com.skripsi.sistemrumah.framework.ActivityFramework;
@@ -36,22 +42,20 @@ import retrofit2.Response;
 public class MonitoringActivity extends ActivityFramework {
 
     private ProgressDialog mProgressDialog;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.Adapter mAdapter;
 
-    @BindView(R.id.tvStatus)
-    TextView tvStatus;
+    @BindView(R.id.rvListKartu)
+    RecyclerView rvListKartu;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monitoring);
         ButterKnife.bind(this);
+        mLayoutManager = new LinearLayoutManager(this);
+        rvListKartu.setLayoutManager(mLayoutManager);
 
-    }
-
-    @OnClick(R.id.tvStatus)
-    public void tvStatus(View view) {
-        preventMultiClick(view);
-        monitoring();
     }
 
     @OnClick(R.id.btnBack)
@@ -62,13 +66,13 @@ public class MonitoringActivity extends ActivityFramework {
 
     }
 
-    private void monitoring() {
+    private void loadData() {
 
         mProgressDialog = UtilsDialog.showLoading(MonitoringActivity.this, mProgressDialog);
 
-        REST_Controller.CLIENT.sendDataMonitoring().enqueue(new Callback<MultiResponse>() {
+        REST_Controller.CLIENT.getKartu().enqueue(new Callback<ApiMonitoring>() {
             @Override
-            public void onResponse(Call<MultiResponse> call, Response<MultiResponse> response) {
+            public void onResponse(Call<ApiMonitoring> call, Response<ApiMonitoring> response) {
                 UtilsDialog.dismissLoading(mProgressDialog);
                 if (response.isSuccessful()) {
                     Log.e("masuk", "0");
@@ -79,7 +83,12 @@ public class MonitoringActivity extends ActivityFramework {
                         return;
                     }
                     Log.e("masuk", "2");
-                    tvStatus.setText(response.body().getMessage());
+                    List<GetDataMonitoring> kartuList = response.body().getAffected();
+                    Log.d("Retrofit Get", "Jumlah data Kartu: " +
+                            String.valueOf(kartuList.size()));
+
+                    mAdapter = new MyAdapter(kartuList);
+                    rvListKartu.setAdapter(mAdapter);
 
 
                 } else {
@@ -89,11 +98,10 @@ public class MonitoringActivity extends ActivityFramework {
             }
 
             @Override
-            public void onFailure(Call<MultiResponse> call, Throwable t) {
+            public void onFailure(Call<ApiMonitoring> call, Throwable t) {
                 Log.e("masuk", "4");
                 UtilsDialog.dismissLoading(mProgressDialog);
-                tvStatus.setText("history loker berhasil terkirim");
-//                UtilsDialog.showBasicDialog(MonitoringActivity.this, "OK", t.toString()).show();
+                UtilsDialog.showBasicDialog(MonitoringActivity.this, "OK", t.toString()).show();
             }
         });
 

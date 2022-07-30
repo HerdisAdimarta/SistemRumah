@@ -21,6 +21,6 @@ class ApiMonitoring {
     String severity;
     @SerializedName("affected")
     @Expose
-    List<GetDataMonitoring> data;
+    List<GetDataMonitoring> affected;
 
 }

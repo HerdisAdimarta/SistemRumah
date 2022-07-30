@@ -28,14 +28,14 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <TextView
-            android:id="@+id/tvStatus"
-            style="@style/TvNFontNormal"
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvListKartu"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tap kartu menggunakan NFC"
-            android:layout_marginRight="5dp"
-            android:layout_gravity="center"/>
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:scrollbars="vertical" />
 
         <Button
             android:id="@+id/btnBack"

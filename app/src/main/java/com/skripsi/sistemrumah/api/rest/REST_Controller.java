@@ -4,6 +4,7 @@ import com.skripsi.sistemrumah.BuildConfig;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.skripsi.sistemrumah.api.ApiMonitoring;
 import com.skripsi.sistemrumah.api.LoginResponse;
 import com.skripsi.sistemrumah.api.MultiResponse;
 import com.skripsi.sistemrumah.storage.Common;
@@ -129,7 +130,7 @@ public class REST_Controller {
         Call<MultiResponse> getDaftarKartu(@PartMap Map<String, RequestBody> names);
 
         @GET(Common.SUB_PATH + "/Sensor/monitoring")
-        Call<MultiResponse> sendDataMonitoring();
+        Call<ApiMonitoring> getKartu();
 
     }
 }
