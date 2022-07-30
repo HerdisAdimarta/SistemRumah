@@ -55,6 +55,7 @@ public class MonitoringActivity extends ActivityFramework {
         ButterKnife.bind(this);
         mLayoutManager = new LinearLayoutManager(this);
         rvListKartu.setLayoutManager(mLayoutManager);
+        loadData();
 
     }
 

@@ -20,11 +20,21 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                style="@style/TvBFontNormal"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="List Kartu" />
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TvBFontNormal"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="List Kartu"
+                    android:textColor="@color/colorBlack" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
