@@ -110,7 +110,9 @@ public class MonitoringActivity extends ActivityFramework {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(mActivity, MainMenuActivity.class));
+        Intent intent = new Intent(mActivity, MainMenuActivity.class);
+        startActivity(intent);
+        finish();
 
     }
 
