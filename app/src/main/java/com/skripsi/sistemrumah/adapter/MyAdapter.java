@@ -30,10 +30,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     @Override
     public void onBindViewHolder (MyViewHolder holder,final int position){
 
-        holder.tvIdKartu.setText(mGetKartu.get(position).getId());
         holder.tvIdTag.setText(mGetKartu.get(position).getId_tag());
-        holder.tvType.setText(mGetKartu.get(position).getType());
-        holder.tvStatus.setText(mGetKartu.get(position).getStatus());
+        holder.tvAction.setText(mGetKartu.get(position).getAction());
+        holder.tvDateTime.setText(mGetKartu.get(position).getDatetime());
 
     }
 
@@ -43,14 +42,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvIdKartu, tvIdTag, tvType, tvStatus;
+        public TextView tvIdTag, tvAction, tvDateTime;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            tvIdKartu = itemView.findViewById(R.id.tvIdKartu);
             tvIdTag = itemView.findViewById(R.id.tvIdTag);
-            tvType = itemView.findViewById(R.id.tvType);
-            tvStatus = itemView.findViewById(R.id.tvStatus);
+            tvAction = itemView.findViewById(R.id.tvAction);
+            tvDateTime = itemView.findViewById(R.id.tvDateTime);
         }
     }
 }

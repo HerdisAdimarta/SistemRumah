@@ -11,17 +11,14 @@ import lombok.Data;
 public
 @Data
 class GetDataMonitoring {
-    @SerializedName("id")
-    @Expose
-    String id;
     @SerializedName("id_tag")
     @Expose
     String id_tag;
-    @SerializedName("type")
+    @SerializedName("action")
     @Expose
-    String type;
-    @SerializedName("status")
+    String action;
+    @SerializedName("datetime")
     @Expose
-    String status;
+    String datetime;
 
 }

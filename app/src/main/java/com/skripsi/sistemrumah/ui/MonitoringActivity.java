@@ -28,6 +28,7 @@ import com.skripsi.sistemrumah.framework.ActivityFramework;
 import com.skripsi.sistemrumah.nfc.Utils;
 import com.skripsi.sistemrumah.nfc.parser.NdefMessageParser;
 import com.skripsi.sistemrumah.nfc.record.ParsedNdefRecord;
+import com.skripsi.sistemrumah.storage.SharedPreferencesProvider;
 import com.skripsi.sistemrumah.utils.UtilsDialog;
 
 import java.util.List;

@@ -45,6 +45,16 @@ public class MainMenuActivity extends ActivityFramework {
         tvUserName.setText(SharedPreferencesProvider.getInstance().get_pref_user_name(mActivity));
     }
 
+    @OnClick(R.id.btnLogout)
+    public void btnLogout(View view) {
+        preventMultiClick(view);
+        SharedPreferencesProvider.getInstance().clearSession(mActivity);
+        startActivity(new Intent(mActivity, LoginActivity.class));
+        finish();
+
+    }
+
+
     @Override
     public void onBackPressed() {
 
