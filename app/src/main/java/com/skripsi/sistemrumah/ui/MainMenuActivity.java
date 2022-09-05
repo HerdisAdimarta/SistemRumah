@@ -41,6 +41,12 @@ public class MainMenuActivity extends ActivityFramework {
         startActivity(new Intent(mActivity, DaftarKartuActivity.class));
     }
 
+    @OnClick(R.id.llMain3)
+    public void llMain3(View view) {
+        preventMultiClick(view);
+        startActivity(new Intent(mActivity, UserTerdaftarActivity.class));
+    }
+
     private void setUser() {
         tvUserName.setText(SharedPreferencesProvider.getInstance().get_pref_user_name(mActivity));
     }

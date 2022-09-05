@@ -4,6 +4,7 @@ import com.skripsi.sistemrumah.BuildConfig;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.skripsi.sistemrumah.api.ApiListUser;
 import com.skripsi.sistemrumah.api.ApiMonitoring;
 import com.skripsi.sistemrumah.api.LoginResponse;
 import com.skripsi.sistemrumah.api.MultiResponse;
@@ -131,6 +132,9 @@ public class REST_Controller {
 
         @GET(Common.SUB_PATH + "/Sensor/monitoring")
         Call<ApiMonitoring> getKartu();
+
+        @GET(Common.SUB_PATH + "/Session/user_terdaftar")
+        Call<ApiListUser> getDataUser();
 
     }
 }
