@@ -129,6 +129,10 @@ public class REST_Controller {
         Call<MultiResponse> getRegister(@PartMap Map<String, RequestBody> names);
 
         @Multipart
+        @POST(Common.SUB_PATH + "/Session/edit_user")
+        Call<MultiResponse> editUser(@Query("id_user") String idUser, @PartMap Map<String, RequestBody> names);
+
+        @Multipart
         @POST(Common.SUB_PATH + "/Session/removeUser")
         Call<MultiResponse> removeUser(@Query("id_user") String idUser, @PartMap Map<String, RequestBody> names);
 

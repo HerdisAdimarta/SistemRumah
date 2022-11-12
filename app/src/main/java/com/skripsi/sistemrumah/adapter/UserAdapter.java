@@ -1,5 +1,6 @@
 package com.skripsi.sistemrumah.adapter;
 
+import static androidx.core.content.ContextCompat.startActivity;
 import static com.skripsi.sistemrumah.framework.ActivityFramework.preventMultiClick;
 
 import android.app.Activity;
@@ -8,6 +9,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +24,9 @@ import com.skripsi.sistemrumah.api.GetDataUser;
 import com.skripsi.sistemrumah.api.MultiResponse;
 import com.skripsi.sistemrumah.api.rest.REST_Controller;
 import com.skripsi.sistemrumah.ui.DaftarActivity;
+import com.skripsi.sistemrumah.ui.EditUserActivity;
 import com.skripsi.sistemrumah.ui.LoginActivity;
+import com.skripsi.sistemrumah.ui.MainMenuActivity;
 import com.skripsi.sistemrumah.ui.UserTerdaftarActivity;
 import com.skripsi.sistemrumah.utils.UtilsDialog;
 
@@ -68,23 +72,34 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder>{
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView tvNama, tvUsername;
-        public ImageButton btnDelete;
+        public ImageButton btnDelete, btnEdit;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             tvNama = itemView.findViewById(R.id.tvNama);
             tvUsername = itemView.findViewById(R.id.tvUsername);
             btnDelete = itemView.findViewById(R.id.btnDelete);
+            btnEdit = itemView.findViewById(R.id.btnEdit);
 
             btnDelete.setOnClickListener(view -> onDeleteUser(mGetDataUser.get(getAdapterPosition()), view, getAdapterPosition()));
+            btnEdit.setOnClickListener(view -> onEditUser(mGetDataUser.get(getAdapterPosition()), view, getAdapterPosition()));
 
         }
+    }
+
+    private void onEditUser(GetDataUser dataUser, View view, int adapterPosition) {
+        preventMultiClick(view);
+        UserTerdaftarActivity mActivity = (UserTerdaftarActivity) view.getContext();
+        Intent toEditUser = new Intent(mActivity, EditUserActivity.class);
+        Bundle bundleUser = new Bundle();
+        bundleUser.putSerializable(EditUserActivity.FROM_DATA, dataUser);
+        toEditUser.putExtras(bundleUser);
+        mActivity.startActivity(toEditUser);
     }
 
     private void onDeleteUser(GetDataUser data, View view, int position) {
         preventMultiClick(view);
         showMessage(data, view.getContext(), position);
-
     }
 
     public void showMessage(GetDataUser data, Context mContext, int position) {

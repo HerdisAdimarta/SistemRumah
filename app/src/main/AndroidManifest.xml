@@ -21,6 +21,11 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.EditUserActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme3"/>
+        <activity
             android:name=".ui.UserTerdaftarActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"

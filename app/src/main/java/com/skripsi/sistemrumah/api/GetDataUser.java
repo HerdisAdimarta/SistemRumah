@@ -3,6 +3,8 @@ package com.skripsi.sistemrumah.api;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 import javax.annotation.Generated;
 
 import lombok.Data;
@@ -10,7 +12,7 @@ import lombok.Data;
 @Generated("org.jsonschema2pojo")
 public
 @Data
-class GetDataUser {
+class GetDataUser implements Serializable {
     @SerializedName("id_user")
     @Expose
     String id_user;
