@@ -67,7 +67,7 @@ public class DaftarKartuActivity extends ActivityFramework {
 
         if (nfcAdapter == null) {
             Toast.makeText(this, "No NFC", Toast.LENGTH_SHORT).show();
-            finish();
+//            finish();
             return;
         }
 

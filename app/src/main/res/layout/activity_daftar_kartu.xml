@@ -64,7 +64,6 @@
                 android:inputType="text"
                 android:padding="10dp"
                 android:text=""
-                android:enabled="false"
                 android:background="@drawable/bg_menu"/>
 
         </LinearLayout>
