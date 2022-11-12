@@ -26,12 +26,14 @@ import retrofit2.Call;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
+import retrofit2.http.Query;
 
 public class REST_Controller {
     public static AlisanAPI CLIENT;
@@ -125,6 +127,10 @@ public class REST_Controller {
         @Multipart
         @POST(Common.SUB_PATH + "/Session/register")
         Call<MultiResponse> getRegister(@PartMap Map<String, RequestBody> names);
+
+        @Multipart
+        @POST(Common.SUB_PATH + "/Session/removeUser")
+        Call<MultiResponse> removeUser(@Query("id_user") String idUser, @PartMap Map<String, RequestBody> names);
 
         @Multipart
         @POST(Common.SUB_PATH + "/Sensor/loker")

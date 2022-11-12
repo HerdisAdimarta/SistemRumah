@@ -26,6 +26,7 @@ import retrofit2.Response;
 
 public class DaftarActivity extends ActivityFramework {
 
+    public static final String FROM_REGISTER = "add_new_user";
     @BindView(R.id.etNama)
     EditText etNama;
     @BindView(R.id.etUsername)
@@ -34,6 +35,7 @@ public class DaftarActivity extends ActivityFramework {
     EditText etPassword;
 
     private ProgressDialog mProgressDialog;
+    private Boolean fromRegister = true;
 
     @OnClick(R.id.btnSimpan)
     public void btnSimpan(View view) {
@@ -61,6 +63,15 @@ public class DaftarActivity extends ActivityFramework {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar);
         ButterKnife.bind(this);
+        initPreparation();
+    }
+
+    private void initPreparation() {
+        try {
+            fromRegister = getIntent().getExtras().getBoolean(FROM_REGISTER);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void register() {
@@ -87,8 +98,12 @@ public class DaftarActivity extends ActivityFramework {
                     }
 
                     UtilsDialog.dismissLoading(mProgressDialog);
-                    startActivity(new Intent(mActivity, LoginActivity.class));
-                    finish();
+                    if (fromRegister) {
+                        startActivity(new Intent(mActivity, LoginActivity.class));
+                        finish();
+                    } else {
+                        onBackPressed();
+                    }
                 } else {
                     UtilsDialog.showBasicDialog(mActivity, "OK", response.errorBody().toString()).show();
                 }
@@ -105,8 +120,11 @@ public class DaftarActivity extends ActivityFramework {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(mActivity, LoginActivity.class));
-        finish();
+        if (fromRegister) {
+            startActivity(new Intent(mActivity, LoginActivity.class));
+            finish();
+            return;
+        }
+        super.onBackPressed();
     }
-
 }

@@ -42,8 +42,22 @@ public class UserTerdaftarActivity extends ActivityFramework {
         ButterKnife.bind(this);
         mLayoutManager = new LinearLayoutManager(this);
         rvListUser.setLayoutManager(mLayoutManager);
-        loadData();
 
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData();
+    }
+
+    @OnClick(R.id.btnAddUser)
+    public void btnAddUser(View view) {
+        preventMultiClick(view);
+        Intent toDaftarUser = new Intent(mActivity, DaftarActivity.class);
+        toDaftarUser.putExtra(DaftarActivity.FROM_REGISTER, false);
+        startActivity(toDaftarUser);
     }
 
     @OnClick(R.id.btnBack)
@@ -54,7 +68,7 @@ public class UserTerdaftarActivity extends ActivityFramework {
 
     }
 
-    private void loadData() {
+    public void loadData() {
 
         mProgressDialog = UtilsDialog.showLoading(UserTerdaftarActivity.this, mProgressDialog);
 
@@ -102,5 +116,4 @@ public class UserTerdaftarActivity extends ActivityFramework {
         finish();
 
     }
-
 }
