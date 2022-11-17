@@ -83,6 +83,7 @@ public class EditUserActivity extends ActivityFramework {
         String mEtPass = etPassword.getText().toString();
 
         final Map<String, RequestBody> data = new HashMap<>();
+        data.put("id_user", RequestBody.create(MediaType.parse("text/plain"), dataUser.getId_user()));
         data.put("name", RequestBody.create(MediaType.parse("text/plain"), mEtNama));
         data.put("username", RequestBody.create(MediaType.parse("text/plain"), mEtUserName));
         data.put("password", RequestBody.create(MediaType.parse("text/plain"), mEtPass));
