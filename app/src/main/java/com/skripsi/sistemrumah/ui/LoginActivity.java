@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends ActivityFramework {
+    private static final String TAG = "LoginActivity";
     @BindView(R.id.btLogin)
     Button btLogin;
 
@@ -91,9 +93,10 @@ public class LoginActivity extends ActivityFramework {
                     }
 
                     UtilsDialog.dismissLoading(mProgressDialog);
+//                    Log.d(TAG, "onResponse: " + (response.body().getRole() == 0));
                     SharedPreferencesProvider.getInstance().set_pref_user_name(mActivity, response.body().getUser());
                     SharedPreferencesProvider.getInstance().set_pref_id_user(mActivity, response.body().getIdUser());
-                    SharedPreferencesProvider.getInstance().set_pref_is_admin(mActivity, response.body().getRole() == "1");
+                    SharedPreferencesProvider.getInstance().set_pref_is_admin(mActivity, response.body().getRole() == 0);
 
                     startActivity(new Intent(mActivity, MainMenuActivity.class));
                     finish();
