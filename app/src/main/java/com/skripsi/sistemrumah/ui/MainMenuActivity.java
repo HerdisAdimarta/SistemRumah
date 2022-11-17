@@ -1,17 +1,14 @@
 package com.skripsi.sistemrumah.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.skripsi.sistemrumah.R;
 import com.skripsi.sistemrumah.framework.ActivityFramework;
 import com.skripsi.sistemrumah.storage.SharedPreferencesProvider;
-import com.skripsi.sistemrumah.utils.UtilsDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,13 +17,19 @@ import butterknife.OnClick;
 public class MainMenuActivity extends ActivityFramework {
     @BindView(R.id.tvUserName)
     TextView tvUserName;
+    @BindView(R.id.llMain1)
+    LinearLayout llMainMonitoring;
+    @BindView(R.id.llMain2)
+    LinearLayout llMainDaftarKartu;
+    @BindView(R.id.llMain3)
+    LinearLayout llMainUserTerdaftar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         ButterKnife.bind(this);
-        setUser();
+        initUser();
     }
 
     @OnClick(R.id.llMain1)
@@ -47,8 +50,14 @@ public class MainMenuActivity extends ActivityFramework {
         startActivity(new Intent(mActivity, UserTerdaftarActivity.class));
     }
 
-    private void setUser() {
+    private void initUser() {
         tvUserName.setText(SharedPreferencesProvider.getInstance().get_pref_user_name(mActivity));
+        Boolean isAdmin = SharedPreferencesProvider.getInstance().get_pref_is_admin(mActivity);
+        if (!isAdmin) {
+            llMainDaftarKartu.setVisibility(View.GONE);
+            llMainUserTerdaftar.setVisibility(View.GONE);
+        }
+
     }
 
     @OnClick(R.id.btnLogout)

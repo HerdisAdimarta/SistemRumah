@@ -92,6 +92,8 @@ public class LoginActivity extends ActivityFramework {
 
                     UtilsDialog.dismissLoading(mProgressDialog);
                     SharedPreferencesProvider.getInstance().set_pref_user_name(mActivity, response.body().getUser());
+                    SharedPreferencesProvider.getInstance().set_pref_id_user(mActivity, response.body().getIdUser());
+                    SharedPreferencesProvider.getInstance().set_pref_is_admin(mActivity, response.body().getRole() == "1");
 
                     startActivity(new Intent(mActivity, MainMenuActivity.class));
                     finish();

@@ -20,4 +20,10 @@ class LoginResponse {
     @SerializedName("user")
     @Expose
     String user;
+    @SerializedName("id_user")
+    @Expose
+    String idUser;
+    @SerializedName("role")
+    @Expose
+    String role;
 }

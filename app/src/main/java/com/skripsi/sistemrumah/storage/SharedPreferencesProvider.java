@@ -14,6 +14,7 @@ public class SharedPreferencesProvider {
     SharedPreferences.Editor editor;
 
     private final String pref_id_user = "pref_id_user";
+    private final String pref_is_admin = "pref_is_admin";
     private final String pref_user_name = "pref_user_name";
     private final String pref_fcm_token = "pref_fcm_token";
     private final String pref_controller = "pref_controller";
@@ -35,6 +36,17 @@ public class SharedPreferencesProvider {
     public String get_pref_id_user(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString(pref_id_user, "");
+    }
+
+    public void set_pref_is_admin(Context context, Boolean datas) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        editor = preferences.edit();
+        editor.putBoolean(pref_is_admin, datas);
+        editor.commit();
+    }
+    public Boolean get_pref_is_admin(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getBoolean(pref_is_admin, false);
     }
 
     public void set_pref_user_name(Context context, String datas) {
