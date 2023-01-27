@@ -1,3 +1,3 @@
 # SistemRumah
 
-Aplikasi Mahasiswa Unpam
+Aplikasi Mahasiswa
