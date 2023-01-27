@@ -55,16 +55,16 @@ android {
             versionName "1.1.1"
             dimension "default"
             minSdkVersion 19
-            buildConfigField("String", "BASE_URL", "\"http://yadika.or.id/aplikasi_loker/\"")
-            buildConfigField("String", "SUB_PATH", "\"index.php/Api\"")
+            buildConfigField("String", "BASE_URL", "\"http://iot-desamerak.tugasakhir2023.my.id/\"")
+            buildConfigField("String", "SUB_PATH", "\"index.php/api\"")
         }
         prod {
             versionName "1.1.1"
             dimension "default"
             proguardFile 'flavor2-rules.pro'
             minSdkVersion 19
-            buildConfigField("String", "BASE_URL", "\"http://yadika.or.id/aplikasi_loker/\"")
-            buildConfigField("String", "SUB_PATH", "\"index.php/Api\"")
+            buildConfigField("String", "BASE_URL", "\"http://iot-desamerak.tugasakhir2023.my.id/\"")
+            buildConfigField("String", "SUB_PATH", "\"index.php/api\"")
         }
     }
 }
