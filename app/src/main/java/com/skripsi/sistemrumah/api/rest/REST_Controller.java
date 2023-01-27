@@ -121,19 +121,19 @@ public class REST_Controller {
     public interface AlisanAPI {
 
         @FormUrlEncoded
-        @POST(Common.SUB_PATH + "/Session/login")
+        @POST(Common.SUB_PATH + "/session/login")
         Call<LoginResponse> getLogin(@FieldMap Map<String, String> bodyMap);
 
         @Multipart
-        @POST(Common.SUB_PATH + "/Session/register")
+        @POST(Common.SUB_PATH + "/session/register")
         Call<MultiResponse> getRegister(@PartMap Map<String, RequestBody> names);
 
         @Multipart
-        @POST(Common.SUB_PATH + "/Session/edit_user")
+        @POST(Common.SUB_PATH + "/session/edit_user")
         Call<MultiResponse> editUser(@Query("id_user") String idUser, @PartMap Map<String, RequestBody> names);
 
         @Multipart
-        @POST(Common.SUB_PATH + "/Session/removeUser")
+        @POST(Common.SUB_PATH + "/session/removeUser")
         Call<MultiResponse> removeUser(@Query("id_user") String idUser, @PartMap Map<String, RequestBody> names);
 
         @Multipart
@@ -143,7 +143,7 @@ public class REST_Controller {
         @GET(Common.SUB_PATH + "/Sensor/monitoring")
         Call<ApiMonitoring> getKartu();
 
-        @GET(Common.SUB_PATH + "/Session/user_terdaftar")
+        @GET(Common.SUB_PATH + "/session/user_terdaftar")
         Call<ApiListUser> getDataUser();
 
     }
