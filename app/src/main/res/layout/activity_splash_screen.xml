@@ -7,7 +7,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
-        android:background="@drawable/ic_unpam"
+        android:background="@drawable/ic_budi_luhur"
         android:orientation="vertical" />
 
 </FrameLayout>

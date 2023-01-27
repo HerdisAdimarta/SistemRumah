@@ -19,9 +19,9 @@
 
     <style name="AppTheme3" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#0066C8</item>
-        <item name="colorPrimaryDark">#0066C8</item>
-        <item name="colorAccent">#0066C8</item>
+        <item name="colorPrimary">#2A9DF4</item>
+        <item name="colorPrimaryDark">#2A9DF4</item>
+        <item name="colorAccent">#2A9DF4</item>
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
